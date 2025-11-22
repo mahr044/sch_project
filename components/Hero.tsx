@@ -54,12 +54,12 @@ const slides = [
 ];
 
 const latestNews = [
-    '  زيارة فريق الجودة للمدرسة قريبا',
-    'افتتاح معرض أهلاً مدارس بأرض المعارض الدولي للكتاب',
-    'قرب بدء الامتحان الاول',
-    'والاستعداد لتدشين موقع مدرسة الاحايوه شرق الاعدادية لخدمة الطالب والمعلم وولى',
-  
-   ];
+  '  زيارة فريق الجودة للمدرسة قريبا',
+  'افتتاح معرض أهلاً مدارس بأرض المعارض الدولي للكتاب',
+  'قرب بدء الامتحان الاول',
+  'والاستعداد لتدشين موقع مدرسة الاحايوه شرق الاعدادية لخدمة الطالب والمعلم وولى',
+
+];
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -67,11 +67,11 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 5000);
-    
+
     return () => clearInterval(timer);
   }, [isAutoPlaying]);
 
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
     <section className="container mx-auto pt-2 md:pt-4 px-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-4 animate-fade-in-up">
         {/* Main Slider */}
-        <div 
+        <div
           className="lg:col-span-3 relative aspect-video overflow-hidden group rounded-md hover-lift transition-all duration-500"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
               </div>
             </div>
           ))}
-          <button 
+          <button
             onClick={() => {
               setIsAutoPlaying(false);
               setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <button 
+          <button
             onClick={() => {
               setIsAutoPlaying(false);
               setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
           </button>
-          
+
           {/* Slide Indicators */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {slides.map((_, index) => (
@@ -125,11 +125,10 @@ const Hero: React.FC = () => {
                   setIsAutoPlaying(false);
                   setCurrentSlide(index);
                 }}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'bg-white scale-125' 
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                    ? 'bg-white scale-125'
                     : 'bg-white/50 hover:bg-white/75'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -137,44 +136,44 @@ const Hero: React.FC = () => {
 
         {/* Side Panel - Latest News */}
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md flex flex-col h-full group hover-lift transition-all duration-300 animate-fade-in-right">
-            <h3 className="text-center bg-red-600 text-white font-bold py-2 md:py-3 text-sm md:text-lg rounded-t-md shrink-0">أحدث الأخبار</h3>
-            <div 
-              className="p-2 md:p-4 flex-grow overflow-hidden relative news-ticker-container cursor-pointer"
-              onMouseEnter={() => {
-                // إيقاف الحركة عند التأشير
-                const element = document.querySelector('.animate-scroll-up') as HTMLElement;
-                if (element) {
-                  element.style.animationPlayState = 'paused';
-                }
-              }}
-              onMouseLeave={() => {
-                // استئناف الحركة عند إزالة التأشير
-                const element = document.querySelector('.animate-scroll-up') as HTMLElement;
-                if (element) {
-                  element.style.animationPlayState = 'running';
-                }
-              }}
-            >
-                <div className="animate-scroll-up">
-                    {/* Duplicating for seamless scroll */}
-                    {[...latestNews, ...latestNews].map((news, index) => (
-                        <div 
-                          key={index} 
-                          className="news-item flex items-start gap-2 md:gap-3 group/item mb-4 md:mb-6 hover-lift transition-all duration-300 cursor-pointer"
-                          onClick={() => {
-                            // يمكن إضافة وظيفة النقر هنا لاحقاً
-                            console.log('News clicked:', news);
-                          }}
-                        >
-                            <span className="text-red-500 mt-1 md:mt-2 text-xs animate-pulse-custom">●</span>
-                            <span className="text-xs md:text-base font-bold leading-relaxed text-gray-800 dark:text-gray-200 group-hover/item:text-red-600 dark:group-hover/item:text-red-500 transition-all duration-300 border-b border-gray-200 dark:border-gray-600 pb-2 md:pb-3 flex-1">
-                                {news}
-                            </span>
-                        </div>
-                    ))}
+          <h3 className="text-center bg-red-600 text-white font-bold py-2 md:py-3 text-sm md:text-lg rounded-t-md shrink-0">أحدث الأخبار</h3>
+          <div
+            className="p-2 md:p-4 flex-grow overflow-hidden relative news-ticker-container cursor-pointer"
+            onMouseEnter={() => {
+              // إيقاف الحركة عند التأشير
+              const element = document.querySelector('.animate-scroll-up') as HTMLElement;
+              if (element) {
+                element.style.animationPlayState = 'paused';
+              }
+            }}
+            onMouseLeave={() => {
+              // استئناف الحركة عند إزالة التأشير
+              const element = document.querySelector('.animate-scroll-up') as HTMLElement;
+              if (element) {
+                element.style.animationPlayState = 'running';
+              }
+            }}
+          >
+            <div className="animate-scroll-up">
+              {/* Duplicating for seamless scroll */}
+              {[...latestNews, ...latestNews].map((news, index) => (
+                <div
+                  key={index}
+                  className="news-item flex items-start gap-2 md:gap-3 group/item mb-4 md:mb-6 hover-lift transition-all duration-300 cursor-pointer"
+                  onClick={() => {
+                    // يمكن إضافة وظيفة النقر هنا لاحقاً
+                    console.log('News clicked:', news);
+                  }}
+                >
+                  <span className="text-red-500 mt-1 md:mt-2 text-xs animate-pulse-custom">●</span>
+                  <span className="text-xs md:text-base font-bold leading-relaxed text-gray-800 dark:text-gray-200 group-hover/item:text-red-600 dark:group-hover/item:text-red-500 transition-all duration-300 border-b border-gray-200 dark:border-gray-600 pb-2 md:pb-3 flex-1">
+                    {news}
+                  </span>
                 </div>
+              ))}
             </div>
           </div>
+        </div>
       </div>
     </section>
   );

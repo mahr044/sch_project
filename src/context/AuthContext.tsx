@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 // أنواع المستخدمين
-export type UserType = 'student' | 'teacher' | 'admin' | 'visitor';
+export type UserType = 'student' | 'admin' | 'visitor';
 
 // بيانات المستخدم
 export interface User {

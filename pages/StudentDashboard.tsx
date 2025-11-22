@@ -1,15 +1,17 @@
 import React from 'react';
 import { useAuth } from '../src/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import SmartAssistant from '../components/SmartAssistantSimple';
+import NotebookLMAssistant from '../components/NotebookLMAssistant';
 
 const StudentDashboard: React.FC = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
     navigate('/');
+    setTimeout(() => {
+      logout();
+    }, 100);
   };
 
   const studentFeatures = [
@@ -97,14 +99,8 @@ const StudentDashboard: React.FC = () => {
 
         {/* Smart Assistant Section */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
-            🤖 المساعد الذكي للدراسة
-          </h2>
-          <div className="max-w-md mx-auto">
-            <SmartAssistant 
-              studentId={user?.id || 'demo-student'} 
-              studentName={user?.name || 'الطالب'} 
-            />
+          <div className="max-w-4xl mx-auto">
+            <NotebookLMAssistant />
           </div>
         </div>
 
