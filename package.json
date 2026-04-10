@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.10.2",
     "cloudinary": "^2.8.0",
     "cors": "^2.8.5",
     "multer": "^2.0.2",

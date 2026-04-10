@@ -318,6 +318,16 @@
   background: #ef4444;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #f87171;
+/* News ticker scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
 }

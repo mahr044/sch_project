@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../src/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { SliderManager } from '../components/SliderManager';
+import { NewsManager } from '../components/NewsManager';
 
 interface SiteSettings {
   siteName: string;
@@ -196,6 +198,8 @@ const AdminDashboard: React.FC = () => {
     { id: 'overview', name: 'نظرة عامة', icon: '📊' },
     { id: 'users', name: 'إدارة المستخدمين', icon: '👥' },
     { id: 'content', name: 'إدارة المحتوى', icon: '📝' },
+    { id: 'slider', name: 'إدارة السلايدر', icon: '🖼️' },
+    { id: 'news', name: 'إدارة الأخبار', icon: '📰' },
     { id: 'schedules', name: 'إدارة الجداول', icon: '📅' },
     { id: 'videos', name: 'إدارة الفيديوهات', icon: '🎥' },
     { id: 'settings', name: 'إعدادات الموقع', icon: '⚙️' },
@@ -857,6 +861,10 @@ const AdminDashboard: React.FC = () => {
         return renderUsers();
       case 'content':
         return renderContentManagement();
+      case 'slider':
+        return <SliderManager />;
+      case 'news':
+        return <NewsManager />;
       case 'schedules':
         return renderSchedules();
       case 'videos':
